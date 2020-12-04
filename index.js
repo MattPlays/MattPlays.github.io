@@ -25,7 +25,7 @@ window.addEventListener('load', async() => {
 
             let RepoURL = newRow.insertCell()
 
-            RepoURL.innerHTML = `<a style="color: red" href="${repo.html_url}">Repo Link!</a>`
+            RepoURL.innerHTML = `<a style="color: red;" href="${repo.html_url}">Repo Link!</a>`
 
             let Description = newRow.insertCell()
 
@@ -48,12 +48,6 @@ window.addEventListener('load', async() => {
             let cdate = new Date(repo.created_at)
 
             CreatedAt.innerHTML = cdate.toLocaleDateString()
-
-            let UpdatedAt = newRow.insertCell()
-
-            let udate = new Date(repo.updated_at)
-
-            UpdatedAt.innerHTML = udate.toLocaleTimeString()
         })
     })
 })
