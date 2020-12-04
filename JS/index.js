@@ -36,6 +36,12 @@ window.addEventListener('load', async() => {
 
             let newRow = repoTable.insertRow()
 
+            await fetch('../colors.json')
+                .then(res => res.json())
+                .then(resJson => {
+                    newRow.style.border = `1px solid ${resJson[repo.language].color}`
+                })
+
             let RepoName = newRow.insertCell()
 
             RepoName.innerHTML = repo.name
