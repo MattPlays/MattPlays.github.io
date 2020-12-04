@@ -22,8 +22,7 @@
             margin: 0;
             background-color: #222;
         }
-        
-        table {
+        /* table {
             color: whitesmoke;
             border-collapse: collapse;
         }
@@ -31,13 +30,28 @@
         th,
         td {
             padding: 8px;
+        } */
+        
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .container {
+            padding: 2px 16px;
         }
     </style>
 </head>
 
 <body>
-    <h2 style="color: whitesmoke">All Repo's I Own/Forked</h2>
-    <table id="Repos" cellspacing=10px>
+    <div class="Repos">
+        <h2 style="color: whitesmoke">All Repo's I Own/Forked</h2>
+    </div>
+    <!-- <table id="Repos" cellspacing=10px>
         <tr>
             <td>Repo Name</td>
             <td>Repo URL</td>
@@ -46,9 +60,9 @@
             <td>Owner</td>
             <td>Fork</td>
             <td>Created On</td>
-            <td>Last Commit Date / Message / Comitter</td>
+            <td>Last Commit Date</td>
         </tr>
-    </table>
+    </table> -->
 </body>
 
 </html>

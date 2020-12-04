@@ -15,7 +15,7 @@ window.addEventListener('load', async() => {
         "credentials": "omit"
     }).then(async(response) => {
         let data = await response.json()
-        let repoTable = document.querySelector("#Repos")
+        let repos = document.querySelector("#Repos")
         data.forEach(async(repo) => {
             let repoRes = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
                 "headers": {
@@ -34,49 +34,52 @@ window.addEventListener('load', async() => {
             })
             let r = await repoRes.json()
 
-            let newRow = repoTable.insertRow()
+            let newDiv = document.createElement("div")
 
-            await fetch('../colors.json')
-                .then(res => res.json())
-                .then(resJson => {
-                    newRow.style.border = `1px solid ${resJson[repo.language].color}`
-                })
+            newDiv.className = "card"
 
-            let RepoName = newRow.insertCell()
+            let divContainer = document.createElement("div")
 
-            RepoName.innerHTML = repo.name
+            divContainer.className = "container"
 
-            let RepoURL = newRow.insertCell()
+            let repoName = document.createElement("h3")
 
-            RepoURL.innerHTML = `<a style="color: red;" href="${repo.html_url}">Repo Link!</a>`
+            repoName.innerText = repo.name
 
-            let Description = newRow.insertCell()
+            let repoURL = document.createElement('a')
 
-            Description.innerHTML = repo.description || "No Description"
+            repoURL.innerHTML = `<a style="color: red;" href="${repo.html_url}">Repo Link!</a>`
 
-            let Lang = newRow.insertCell()
+            let description = document.createElement('p')
 
-            Lang.innerHTML = repo.language
+            description.innerText = repo.description || "No Description"
 
-            let Owner = newRow.insertCell()
+            let Lang = document.createElement("p")
 
-            Owner.innerHTML = repo.owner.login
+            Lang.innerText = repo.language || "N/A"
 
-            let Fork = newRow.insertCell()
+            let Owner = document.createElement("p")
 
-            Fork.innerHTML = repo.fork
+            Owner.innerText = `Owner: ${repo.owner.login}`
 
-            let CreatedAt = newRow.insertCell()
+            let Fork = document.createElement("p")
+
+            Fork.innerText = `Fork: ${repo.fork}`
+
+            let CreatedAt = document.createElement('p')
 
             let cdate = new Date(repo.created_at)
 
-            CreatedAt.innerHTML = cdate.toLocaleDateString()
+            CreatedAt.innerText = cdate.toLocaleDateString()
 
-            let UpdatedDate = newRow.insertCell()
+            let UpdatedDate = document.createElement('p')
 
             let udate = new Date(r[0].commit.author.date)
 
-            UpdatedDate.innerHTML = `${udate.toLocaleDateString()} / ${r[0].commit.message} / ${r[0].commit.committer.name}`
+            UpdatedDate.innerText = udate.toLocaleDateString()
+
+            divContainer.append(repoName, repoURL, description, Lang, Owner, Fork, CreatedAt, UpdatedDate)
+
         })
     })
 })
