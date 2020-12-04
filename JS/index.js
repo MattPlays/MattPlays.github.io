@@ -15,7 +15,7 @@ window.addEventListener('load', async() => {
         "credentials": "omit"
     }).then(async(response) => {
         let data = await response.json()
-        let repos = document.querySelector("#Repos")
+        let repos = document.querySelector(".Repos")
         data.forEach(async(repo) => {
             let repoRes = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
                 "headers": {
@@ -79,6 +79,10 @@ window.addEventListener('load', async() => {
             UpdatedDate.innerText = udate.toLocaleDateString()
 
             divContainer.append(repoName, repoURL, description, Lang, Owner, Fork, CreatedAt, UpdatedDate)
+
+            newDiv.appendChild(divContainer)
+
+            repos.appendChild(newDiv)
 
         })
     })
