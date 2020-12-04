@@ -25,7 +25,7 @@ window.addEventListener('load', async() => {
 
             let RepoURL = newRow.insertCell()
 
-            RepoURL.innerHTML = `<a href="${repo.html_url}">Repo Link!</a>`
+            RepoURL.innerHTML = `<a style="color: red" href="${repo.html_url}">Repo Link!</a>`
 
             let Description = newRow.insertCell()
 
