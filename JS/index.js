@@ -40,6 +40,7 @@ window.addEventListener('load', async() => {
                 .then(res => res.json())
                 .then(resJson => {
                     newRow.style.border = `1px solid ${resJson[repo.language].color}`
+                    newRow.style.cellspacing = "10px"
                 })
 
             let RepoName = newRow.insertCell()
