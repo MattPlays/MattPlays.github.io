@@ -23,7 +23,8 @@
                 "method": "GET",
                 "mode": "cors",
                 "credentials": "omit"
-            }).then((data) => {
+            }).then(async(response) => {
+                let data = await response.json()
                 let repoTable = document.querySelector("#OwnedRepos")
                 data.forEach(repo => {
                     let newRow = repoTable.insertRow(-1)
