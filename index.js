@@ -1,10 +1,20 @@
-updateLists = (async() => {
-    await fetch("https://api.github.com/MattPlays/repos?visibility=public?affliation=owner", {
-        method: "GET",
-        headers: {
-            Accept: "application/json"
-        }
-    }).then((data) => {
+document.addEventListener('load', async() => {
+    await fetch("https://api.github.com/users/MattPlays/repos?visibility=public?affliation=owner", {
+        "headers": {
+            "accept": "application/json",
+            "accept-language": "en-US,en;q=0.9",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site"
+        },
+        "referrer": "https://mattplays.github.io/",
+        "referrerPolicy": "no-referrer-when-downgrade",
+        "body": null,
+        "method": "GET",
+        "mode": "cors",
+        "credentials": "omit"
+    }).then(async(response) => {
+        let data = await response.json()
         let repoTable = document.querySelector("#OwnedRepos")
         data.forEach(repo => {
             let newRow = repoTable.insertRow(-1)
