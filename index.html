@@ -8,14 +8,15 @@
     <meta name="author" content="Unknown">
     <meta name="description" content="I May be Unknown.">
     <script src="./JS/Repos.js"></script>
-    <script src="./JS/Friends.js"></script>
     <style type="text/css">
+        @import url("https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap");
         html,
         body {
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: row-reverse;
+            font-family: Montserrat, sans-serif;
             justify-content: center;
             align-items: center;
             align-content: center;
@@ -23,28 +24,62 @@
             margin: 0;
             background-color: #222;
         }
-        /* table {
-            color: whitesmoke;
-            border-collapse: collapse;
+        
+        .labels>span {
+            padding: .2rem .35rem;
+            background-color: #444;
+            color: #c6d7ec;
+            font-size: .8rem;
+            word-break: break-all;
+            border-radius: .5rem;
+            align-self: flex-start
         }
         
-        th,
-        td {
-            padding: 8px;
-        } */
+        .cards>div .labels {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            grid-gap: .5rem;
+            padding: .5rem .35rem;
+        }
         
-        .card {
+        .cards {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
+            margin: 2rem 0;
+            display: grid;
+            grid-gap: 1.5rem;
         }
         
-        .card:hover {
+        .cards:hover {
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         }
         
         .container {
             padding: 2px 16px;
             color: whitesmoke;
+            border-radius: 1rem;
+        }
+        
+        @keyframes slide-up {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 50px, 0)
+            }
+            100% {
+                opacity: 1;
+                transform: none
+            }
+        }
+        
+        @keyframes slide-in {
+            0% {
+                opacity: 0;
+                transform: translate3d(-150px, 0, 0)
+            }
+            100% {
+                opacity: 1;
+                transform: none
+            }
         }
     </style>
 </head>
@@ -53,21 +88,6 @@
     <div class="Repos">
         <h2 style="color: whitesmoke">All Repo's I Own/Forked</h2>
     </div>
-    <div class="Friends">
-        <h2 style="color: whitesmoke">My Friends</h2>
-    </div>
-    <!-- <table id="Repos" cellspacing=10px>
-        <tr>
-            <td>Repo Name</td>
-            <td>Repo URL</td>
-            <td>Description</td>
-            <td>Primary Language</td>
-            <td>Owner</td>
-            <td>Fork</td>
-            <td>Created On</td>
-            <td>Last Commit Date</td>
-        </tr>
-    </table> -->
 </body>
 
 </html>

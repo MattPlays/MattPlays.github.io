@@ -36,7 +36,7 @@ window.addEventListener('load', async() => {
 
             let newDiv = document.createElement("div")
 
-            newDiv.className = "card"
+            newDiv.className = "cards"
 
             let divContainer = document.createElement("div")
 
@@ -44,48 +44,38 @@ window.addEventListener('load', async() => {
 
             let repoName = document.createElement("h3")
 
-            // let repoURL = document.createElement('a')
+            let description = document.createElement('h4')
 
-            // repoURL.href = repo.html_url
+            description.innerText = `${repo.description || "No Description"}`
 
-            // repoURL.innerText = "Link!"
+            let labels = document.createElement('div')
 
-            let description = document.createElement('p')
+            labels.className = "labels"
 
-            description.innerText = `Description: ${repo.description || "No Description"}`
+            let Lang = document.createElement('span')
 
-            let Lang = document.createElement("p")
+            Lang.innerText = repo.language || "Unknown Language"
 
-            Lang.innerText = `Primary Language: ${repo.language || "N/A"}`
+            let Fork = document.createElement('span');
 
-            let Owner = document.createElement("p")
+            if (repo.fork) { Fork.innerText = "Forked ✅"; } else { Fork.innerText = "Forked ❌"; }
 
-            Owner.innerText = `Owner: ${repo.owner.login}`
-
-            let Fork = document.createElement("p")
-
-            Fork.innerText = `Fork: ${repo.fork}`
-
-            let CreatedAt = document.createElement('p')
+            let CreatedAt = document.createElement('span')
 
             let cdate = new Date(repo.created_at)
 
             CreatedAt.innerText = `Created On: ${cdate.toLocaleDateString()}`
 
-            let UpdatedDate = document.createElement('p')
-
-            let udate = new Date(r[0].commit.author.date)
-
-            UpdatedDate.innerText = `Last Update On: ${udate.toLocaleDateString()}`
+            labels.append(Lang, Fork, CreatedAt)
 
             await fetch('../colors.json')
                 .then(res => res.json())
                 .then(resJson => {
-                    divContainer.style.color = resJson[repo.language].color
+                    divContainer.style.border = `1px solid ${resJson[repo.language].color}`
                     repoName.innerHTML = `<a style="color: ${resJson[repo.language].color}" href="${repo.html_url}">${repo.name}</a>`
                 })
 
-            divContainer.append(repoName, description, Lang, Owner, Fork, CreatedAt, UpdatedDate)
+            divContainer.append(repoName, description, labels)
 
             newDiv.appendChild(divContainer)
 
