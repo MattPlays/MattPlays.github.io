@@ -16,7 +16,7 @@ window.addEventListener('load', async() => {
     }).then(async(response) => {
         let data = await response.json()
         let repoTable = document.querySelector("#Repos")
-        data.forEach(repo => {
+        data.forEach(async(repo) => {
             let repoRes = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}`, {
                 "headers": {
                     "accept": "application/json",
