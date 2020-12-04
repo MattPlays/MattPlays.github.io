@@ -15,21 +15,45 @@ window.addEventListener('load', async() => {
         "credentials": "omit"
     }).then(async(response) => {
         let data = await response.json()
-        let repoTable = document.querySelector("#OwnedRepos")
+        let repoTable = document.querySelector("#Repos")
         data.forEach(repo => {
-            let newRow = repoTable.insertRow(-1)
-            let RepoName = newRow.insertCell(-1)
-            RepoName.innerHTML = `${repo.name}`
-            let RepoURL = newRow.insertCell(-1)
+            let newRow = repoTable.insertRow()
+
+            let RepoName = newRow.insertCell()
+
+            RepoName.innerHTML = repo.name
+
+            let RepoURL = newRow.insertCell()
+
             RepoURL.innerHTML = `<a href="${repo.html_url}">Repo Link!</a>`
-            let Description = newRow.insertCell(-1)
-            Description.innerHTML = `${repo.description || "No Description"}`
-            let Fork = newRow.insertCell(-1)
-            Fork.innerHTML = `${repo.fork || "N/A"}`
-            let CreatedAt = newRow.insertCell(-1)
-            CreatedAt.innerHTML = `${repo.created_at}`
-            let UpdatedAt = newRow.insertCell(-1)
-            UpdatedAt.innerHTML = `${repo.updated_at}`
+
+            let Description = newRow.insertCell()
+
+            Description.innerHTML = repo.description || "No Description"
+
+            let Lang = newRow.insertCell()
+
+            Lang.innerHTML = repo.language
+
+            let Owner = newRow.insertCell()
+
+            Owner.innerHTML = repo.owner.login
+
+            let Fork = newRow.insertCell()
+
+            Fork.innerHTML = repo.fork
+
+            let CreatedAt = newRow.insertCell()
+
+            let cdate = new Date(repo.created_at)
+
+            CreatedAt.innerHTML = cdate.toLocaleDateString()
+
+            let UpdatedAt = newRow.insertCell()
+
+            let udate = new Date(repo.updated_at)
+
+            UpdatedAt.innerHTML = udate.toLocaleTimeString()
         })
     })
 })
