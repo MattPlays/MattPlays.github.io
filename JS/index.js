@@ -15,24 +15,25 @@ window.addEventListener('load', async() => {
         "credentials": "omit"
     }).then(async(response) => {
         let data = await response.json()
-        let repoRes = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}`, {
-            "headers": {
-                "accept": "application/json",
-                "accept-language": "en-US,en;q=0.9",
-                "sec-fetch-dest": "empty",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-site": "cross-site"
-            },
-            "referrer": "https://mattplays.github.io/",
-            "referrerPolicy": "no-referrer-when-downgrade",
-            "body": null,
-            "method": "GET",
-            "mode": "cors",
-            "credentials": "omit"
-        })
-        let r = await repoRes.json()
         let repoTable = document.querySelector("#Repos")
         data.forEach(repo => {
+            let repoRes = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}`, {
+                "headers": {
+                    "accept": "application/json",
+                    "accept-language": "en-US,en;q=0.9",
+                    "sec-fetch-dest": "empty",
+                    "sec-fetch-mode": "cors",
+                    "sec-fetch-site": "cross-site"
+                },
+                "referrer": "https://mattplays.github.io/",
+                "referrerPolicy": "no-referrer-when-downgrade",
+                "body": null,
+                "method": "GET",
+                "mode": "cors",
+                "credentials": "omit"
+            })
+            let r = await repoRes.json()
+
             let newRow = repoTable.insertRow()
 
             let RepoName = newRow.insertCell()
