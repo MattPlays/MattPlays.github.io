@@ -17,6 +17,7 @@ window.addEventListener('load', async() => {
         let data = await response.json()
         let repoTable = document.querySelector("#OwnedRepos")
         data.forEach(repo => {
+            if (repo.fork) return
             let newRow = repoTable.insertRow(-1)
             let RepoName = newRow.insertCell(-1)
             RepoName.innerHTML = `${repo.name}`
