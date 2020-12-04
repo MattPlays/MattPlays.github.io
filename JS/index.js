@@ -15,6 +15,22 @@ window.addEventListener('load', async() => {
         "credentials": "omit"
     }).then(async(response) => {
         let data = await response.json()
+        let repoRes = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}`, {
+            "headers": {
+                "accept": "application/json",
+                "accept-language": "en-US,en;q=0.9",
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "cross-site"
+            },
+            "referrer": "https://mattplays.github.io/",
+            "referrerPolicy": "no-referrer-when-downgrade",
+            "body": null,
+            "method": "GET",
+            "mode": "cors",
+            "credentials": "omit"
+        })
+        let r = await repoRes.json()
         let repoTable = document.querySelector("#Repos")
         data.forEach(repo => {
             let newRow = repoTable.insertRow()
@@ -48,6 +64,12 @@ window.addEventListener('load', async() => {
             let cdate = new Date(repo.created_at)
 
             CreatedAt.innerHTML = cdate.toLocaleDateString()
+
+            let UpdatedDate = newRow.insertCell()
+
+            let udate = new Date(r[0].commit.author.date)
+
+            UpdatedDate.innerHTML = `${udate.toLocaleDateString()} / ${r[0].message}`
         })
     })
 })
