@@ -17,7 +17,6 @@ window.addEventListener('load', async() => {
         let data = await response.json()
         let repoTable = document.querySelector("#OwnedRepos")
         data.forEach(repo => {
-            if (repo.fork) return
             let newRow = repoTable.insertRow(-1)
             let RepoName = newRow.insertCell(-1)
             RepoName.innerHTML = `${repo.name}`
@@ -25,6 +24,8 @@ window.addEventListener('load', async() => {
             RepoURL.innerHTML = `<a href="${repo.html_url}">Repo Link!</a>`
             let Description = newRow.insertCell(-1)
             Description.innerHTML = `${repo.description || "No Description"}`
+            let Fork = newRow.insertCell(-1)
+            Fork.innerHTML = `${repo.fork}`
             let CreatedAt = newRow.insertCell(-1)
             CreatedAt.innerHTML = `${repo.created_at}`
             let UpdatedAt = newRow.insertCell(-1)
