@@ -77,7 +77,7 @@ window.addEventListener('load', async() => {
 
             let udate = new Date(r[0].commit.author.date)
 
-            UpdatedDate.innerHTML = `${udate.toLocaleDateString()} / ${r[0].commit.message}`
+            UpdatedDate.innerHTML = `${udate.toLocaleDateString()} / ${r[0].commit.message} / ${r[0].commit.committer.name}`
         })
     })
 })
