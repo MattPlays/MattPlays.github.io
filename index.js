@@ -21,6 +21,3 @@ updateLists = (async() => {
         })
     })
 })
-document.onload = function() {
-    updateLists()
-}
