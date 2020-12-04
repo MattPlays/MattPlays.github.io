@@ -16,6 +16,11 @@ window.addEventListener('load', async() => {
     }).then(async(response) => {
         let data = await response.json()
         let repoTable = document.querySelector("#Repos")
+        await fetch('../colors.json')
+            .then(res => res.json())
+            .then(resJson => {
+                document.getElementById("Repos").style.border = `1px solid ${resJson[data[0].language].color}`
+            })
         data.forEach(async(repo) => {
             let repoRes = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
                 "headers": {
@@ -35,12 +40,6 @@ window.addEventListener('load', async() => {
             let r = await repoRes.json()
 
             let newRow = repoTable.insertRow()
-
-            await fetch('../colors.json')
-                .then(res => res.json())
-                .then(resJson => {
-                    newRow.style.border = `1px solid ${resJson[repo.language].color}`
-                })
 
             let RepoName = newRow.insertCell()
 
