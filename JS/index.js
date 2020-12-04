@@ -44,19 +44,19 @@ window.addEventListener('load', async() => {
 
             let repoName = document.createElement("h3")
 
-            repoName.innerText = repo.name
+            // let repoURL = document.createElement('a')
 
-            let repoURL = document.createElement('a')
+            // repoURL.href = repo.html_url
 
-            repoURL.innerHTML = `<a style="color: red;" href="${repo.html_url}">Repo Link!</a>`
+            // repoURL.innerText = "Link!"
 
             let description = document.createElement('p')
 
-            description.innerText = repo.description || "No Description"
+            description.innerText = `Description: ${repo.description || "No Description"}`
 
             let Lang = document.createElement("p")
 
-            Lang.innerText = repo.language || "N/A"
+            Lang.innerText = `Primary Language: ${repo.language || "N/A"}`
 
             let Owner = document.createElement("p")
 
@@ -70,15 +70,22 @@ window.addEventListener('load', async() => {
 
             let cdate = new Date(repo.created_at)
 
-            CreatedAt.innerText = cdate.toLocaleDateString()
+            CreatedAt.innerText = `Created On: ${cdate.toLocaleDateString()}`
 
             let UpdatedDate = document.createElement('p')
 
             let udate = new Date(r[0].commit.author.date)
 
-            UpdatedDate.innerText = udate.toLocaleDateString()
+            UpdatedDate.innerText = `Last Update On: ${udate.toLocaleDateString()}`
 
-            divContainer.append(repoName, repoURL, description, Lang, Owner, Fork, CreatedAt, UpdatedDate)
+            await fetch('../colors.json')
+                .then(res => res.json())
+                .then(resJson => {
+                    divContainer.style.color = resJson[repo.language].color
+                    repoName.innerHTML = `<a style="color: ${resJson[repo.language].color}" href="${repo.html_url}">${repo.name}</a>`
+                })
+
+            divContainer.append(repoName, description, Lang, Owner, Fork, CreatedAt, UpdatedDate)
 
             newDiv.appendChild(divContainer)
 
