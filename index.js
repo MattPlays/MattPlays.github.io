@@ -1,4 +1,4 @@
-document.addEventListener('load', async() => {
+window.addEventListener('load', async() => {
     await fetch("https://api.github.com/users/MattPlays/repos?visibility=public?affliation=owner", {
         "headers": {
             "accept": "application/json",
