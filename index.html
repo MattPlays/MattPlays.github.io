@@ -11,21 +11,33 @@
     <meta property="og:url" content="https://mattplays.github.io/">
     <meta property="og:image" content="https://mattplays.github.io/favicon.ico">
     <script src="./JS/Repos.js"></script>
+    <script>
+        function doLoader() {
+            setTimeout(() => {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("Repos").style.display = "block";
+                loadRepos()
+            }, 3000)
+        }
+    </script>
     <style type="text/css">
         @import url("https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap");
         html,
         body {
-            width: 100%;
+            background-color: #222;
+        }
+        
+        .Repos {
+            width: 50%;
             height: 100%;
             display: flex;
-            flex-direction: row-reverse;
+            flex-direction: column;
             font-family: Montserrat, sans-serif;
-            justify-content: center;
-            align-items: center;
-            align-content: center;
+            justify-content: inherit;
+            align-items: inherit;
+            align-content: inherit;
             overflow: auto;
-            margin: 0;
-            background-color: #222;
+            margin: 0px;
         }
         
         .labels>span {
@@ -54,7 +66,7 @@
         }
         
         .cards:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 36px 0 rgba(0, 0, 0, 0.2);
         }
         
         .container {
@@ -62,11 +74,78 @@
             color: whitesmoke;
             border-radius: 1rem;
         }
+        
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+        
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        /* Add animation to "page content" */
+        
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+        
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+        
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
     </style>
 </head>
 
-<body>
-    <div class="Repos">
+<body onload="doLoader()">
+    <div id="loader"></div>
+    <div style="display: none;" id="Repos" class="Repos animate-bottom">
         <h2 style="color: whitesmoke">All Repo's I Own/Forked</h2>
     </div>
 </body>

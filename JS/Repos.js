@@ -1,4 +1,4 @@
-window.addEventListener('load', async() => {
+let loadRepos = async() => {
     await fetch("https://api.github.com/users/MattPlays/repos?visibility=public?affliation=owner", {
         "headers": {
             "accept": "application/json",
@@ -83,4 +83,4 @@ window.addEventListener('load', async() => {
 
         })
     })
-})
+}
