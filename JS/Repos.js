@@ -78,7 +78,7 @@ let loadRepos = async() => {
                 .then(res => res.json())
                 .then(resJson => {
                     divContainer.style.border = `1px solid ${resJson[repo.language].color}`
-                    repoName.innerHTML = `<a style="color: ${resJson[repo.language].color}" href="${repo.html_url}">${repo.name}</a>`
+                    repoName.innerHTML = `<a style="color: ${resJson[repo.language].color}" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a>`
                 })
 
             divContainer.append(repoName, description, labels)
