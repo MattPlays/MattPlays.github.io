@@ -17,7 +17,7 @@ let loadRepos = async() => {
         let data = await response.json()
         let repos = document.querySelector(".Repos")
         data.forEach(async(repo) => {
-            let repoRes = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
+            let repoRes = await fetch(repo.languages_url, {
                 "headers": {
                     "accept": "application/json",
                     "accept-language": "en-US,en;q=0.9",
@@ -52,10 +52,15 @@ let loadRepos = async() => {
 
             labels.className = "labels"
 
-            let Lang = document.createElement('span')
+            // let Lang = document.createElement('span')
 
-            Lang.innerText = repo.language || "Unknown Language"
-
+            // Lang.innerText = repo.language || "Unknown Language"
+            Object.keys(r).map(function(key, index) {
+                if (index > 1) return
+                let Lang = document.createElement('span')
+                Lang.innerText = `${key}` || "Unknown Language"
+                labels.appendChild(Lang)
+            })
             let Fork = document.createElement('span');
 
             if (repo.fork) { Fork.innerText = "Forked ✅"; } else { Fork.innerText = "Forked ❌"; }
@@ -66,7 +71,8 @@ let loadRepos = async() => {
 
             CreatedAt.innerText = `Created On: ${cdate.toLocaleDateString()}`
 
-            labels.append(Lang, Fork, CreatedAt)
+            labels.append(Fork, CreatedAt)
+
 
             await fetch('../colors.json')
                 .then(res => res.json())
