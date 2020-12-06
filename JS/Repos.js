@@ -43,9 +43,11 @@ let loadRepos = async() => {
 
             divContainer.className = "container"
 
-            let repoName = document.createElement("h3")
+            let repoName = document.createElement("h1")
 
-            let description = document.createElement('h4')
+            let description = document.createElement('p')
+
+            description.style.fontSize = "18px"
 
             description.innerText = `${repo.description || "No Description"}`
 
@@ -75,8 +77,8 @@ let loadRepos = async() => {
             await fetch('../colors.json')
                 .then(res => res.json())
                 .then(resJson => {
-                    divContainer.style.border = `1px solid ${resJson[repo.language].color}`
-                    repoName.innerHTML = `<a style="color: ${resJson[repo.language].color}" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a>`
+                    divContainer.style.border = `1px solid ${resJson[repo.language]}`
+                    repoName.innerHTML = `<a style="color: ${resJson[repo.language]}" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a>`
                 })
 
             divContainer.append(repoName, description, labels)

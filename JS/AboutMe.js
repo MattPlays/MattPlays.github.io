@@ -24,21 +24,13 @@ let loadAboutMe = async() => {
 
         divContainer.className = "container"
 
-        let img = document.createElement("img")
-
-        img.src = data.avatar_url
-
-        img.width = "25%"
-
         let Login = document.createElement("h1")
 
-        Login.innerHTML = `<a style="color: blue;" href="${data.html_url}" target="_blank" rel="noopener noreferrer">${data.login}</a>`
+        Login.innerHTML = `<a style="color: blue;" href="${data.html_url}" target="_blank" rel="noopener noreferrer">${data.name}</a>`
 
-        let name = document.createElement('h2')
+        let bio = document.createElement("p")
 
-        name.innerText = data.name
-
-        let bio = document.createElement("h4")
+        bio.style.fontSize = "20px"
 
         bio.innerText = data.bio
 
@@ -64,7 +56,7 @@ let loadAboutMe = async() => {
 
         labels.append(publicrepos, followers, following, createdAt)
 
-        divContainer.append(img, Login, name, bio, labels)
+        divContainer.append(Login, bio, labels)
 
         divContainer.style.border = `1px solid rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
 

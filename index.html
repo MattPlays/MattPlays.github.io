@@ -27,43 +27,26 @@
         @import url("https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap");
         html,
         body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-family: Montserrat, sans-serif;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            overflow: auto;
             background-color: #222;
-        }
-        
-        .Repos {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            font-family: Montserrat, sans-serif;
-            justify-content: inherit;
-            align-items: inherit;
-            align-content: inherit;
-            overflow: auto;
-            margin: 0px;
-        }
-        
-        .AboutMe {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            font-family: Montserrat, sans-serif;
-            justify-content: inherit;
-            align-items: inherit;
-            align-content: inherit;
-            overflow: auto;
-            margin: 0px;
         }
         
         .labels>span {
             padding: .2rem .35rem;
             background-color: #444;
             color: #c6d7ec;
-            font-size: .8rem;
+            font-size: 1rem;
             word-break: break-all;
-            border-radius: .5rem;
-            align-self: flex-start
+            border-radius: 1.5rem;
+            align-self: flex-end;
         }
         
         .cards>div .labels {
@@ -76,19 +59,21 @@
         .cards {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             display: grid;
             grid-gap: 1.5rem;
         }
         
         .cards:hover {
-            box-shadow: 0 8px 36px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.25);
         }
         
         .container {
-            padding: 2px 16px;
+            padding: 20px 40px;
+            align-content: flex-start;
+            align-items: flex-start;
             color: whitesmoke;
-            border-radius: 1rem;
+            border-radius: 1.35rem;
         }
         
         #loader {
@@ -162,10 +147,10 @@
 <body onload="doLoader()">
     <div id="loader"></div>
     <div style="display: none;" id="AboutMe" class="AboutMe animate-bottom">
-        <h1 style='color:whitesmoke'>About Me!</h1>
+        <h1 style='color:whitesmoke; font-family: monospace; font-size: 40px;'>About Me!</h1>
     </div>
-    <div style="display: none;" id="Repos" class="Repos animate-bottom">
-        <h1 style="color: whitesmoke">My Repos</h1>
+    <div style="display: none; " id="Repos" class="Repos animate-bottom">
+        <h1 style="color: whitesmoke; font-family: monospace; font-size: 30px;">My Repos</h1>
     </div>
 </body>
 
