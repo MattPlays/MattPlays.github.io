@@ -17,6 +17,7 @@ let loadRepos = async() => {
         let data = await response.json()
         let repos = document.querySelector(".Repos")
         data.forEach(async(repo) => {
+            if (repo.fork) return
             let repoRes = await fetch(repo.languages_url, {
                 "headers": {
                     "accept": "application/json",
@@ -61,9 +62,6 @@ let loadRepos = async() => {
                 Lang.innerText = `${key}` || "Unknown Language"
                 labels.appendChild(Lang)
             })
-            let Fork = document.createElement('span');
-
-            if (repo.fork) { Fork.innerText = "Forked ✅"; } else { Fork.innerText = "Forked ❌"; }
 
             let CreatedAt = document.createElement('span')
 
@@ -71,7 +69,7 @@ let loadRepos = async() => {
 
             CreatedAt.innerText = `Created On: ${cdate.toLocaleDateString()}`
 
-            labels.append(Fork, CreatedAt)
+            labels.append(CreatedAt)
 
 
             await fetch('../colors.json')
