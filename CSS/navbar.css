@@ -115,6 +115,7 @@ nav a:hover {
 		display: grid;
 		grid-template-columns: 1fr auto minmax(600px, 1fr) 1fr;
 	}
+	/*Nav*/
 	nav {
 		position: relative;
 		text-align: left;
