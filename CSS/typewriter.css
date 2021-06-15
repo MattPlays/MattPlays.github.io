@@ -6,6 +6,7 @@
 }
 
 .typewriter {
+	background-color: var(--bg-color);
 	margin: 0;
 	font-family: "Source Sans Pro", sans-serif;
 	min-height: 100vh;

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Unknown</title>
+    <meta name="author" content="Unknown">
+    <meta name="description" content="I Might Be Unknown.">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta property="og:url" content="https://mattplays.github.io/">
+    <meta property="og:image" content="https://mattplays.github.io/favicon.ico">
+    <link rel="stylesheet" href="/CSS/ball.css">;
+    <script>
+        var url = "https://status.mojang.com/check";
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+
+        xhr.onreadystatechange = function () {
+            var root = document.documentElement;
+        if (xhr.readyState === 4) {
+            let a = JSON.parse(xhr.responseText);
+            let account_status_color = a[Object.keys(a)[2]]["account.mojang.com"];
+            if(account_status_color === "green") {
+                root.style.setProperty("--boxColor", "hsla(166, 88%, 55%, 0.6)");
+            } else if(account_status_color === "red") {
+                root.style.setProperty("--boxColor", "hsla(10, 100%, 50%, 0.6)");
+            } else if(account_status_color === "yellow") {
+                root.style.setProperty("--boxColor", "hsla(64, 100%, 50%, 0.6)");
+            } else {
+                root.style.setProperty("--boxColor", "#0ff7");
+            }
+               
+        }};
+
+        xhr.send();
+
+        </script>
+</head>
+
+<body>
+        <div class="scene">
+            <div class="floor"></div>
+            <div class="cube">
+              <div class="front"></div>
+              <div class="back"></div>
+              <div class="left"></div>
+              <div class="right"></div>
+              <div class="top">
+                <div class="ballShadow"></div>
+              </div>
+              <div class="bottom"></div>
+            </div>
+            <div class="ball"></div>
+          </div>
+    
+</body>
+
+</html>
